@@ -1,4 +1,4 @@
-package encryption
+package dev.patbeagan.encryption
 
 import java.security.KeyPair
 import java.security.KeyPairGenerator
@@ -21,7 +21,7 @@ class Encryptor(
     }
 
     fun encrypt(corpus: ByteArray): ByteArray = cipher.apply {
-        init(Cipher.ENCRYPT_MODE, pair.public);
+        init(Cipher.ENCRYPT_MODE, pair.public)
         update(corpus)
     }.doFinal()
 
@@ -29,3 +29,4 @@ class Encryptor(
         init(Cipher.DECRYPT_MODE, pair.private)
     }.doFinal(corpus)
 }
+

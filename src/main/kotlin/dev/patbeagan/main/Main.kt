@@ -1,7 +1,7 @@
-package main
+package dev.patbeagan.main
 
-import encryption.Encryptor
-import encryption.KeyPairEncoder
+import dev.patbeagan.encryption.Encryptor
+import dev.patbeagan.encryption.KeyPairEncoder
 import java.security.KeyPairGenerator
 
 fun main(args: Array<String>) {
@@ -11,7 +11,7 @@ fun main(args: Array<String>) {
 
 private fun testEncryptor() {
     val encryptor = Encryptor()
-    val encrypt: ByteArray = encryptor.encrypt("testkjashgrlaghfhj".toByteArray())
+    val encrypt: ByteArray = encryptor.encrypt("your string here".toByteArray())
     val decrypt: ByteArray = encryptor.decrypt(encrypt)
     println(decrypt.toString(Charsets.UTF_8))
 }

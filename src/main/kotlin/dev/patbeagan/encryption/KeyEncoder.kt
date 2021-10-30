@@ -1,4 +1,4 @@
-package encryption
+package dev.patbeagan.encryption
 
 import java.io.File
 import java.io.FileInputStream

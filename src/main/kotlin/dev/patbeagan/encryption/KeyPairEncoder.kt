@@ -1,5 +1,6 @@
-package encryption
+package dev.patbeagan.encryption
 
+import dev.patbeagan.ui.RandomArt
 import java.io.IOException
 import java.security.KeyFactory
 import java.security.KeyPair
@@ -11,7 +12,7 @@ class KeyPairEncoder {
     private val privateKeyEncoder = PrivateKeyEncoder()
 
     fun dumpKeyPair(keyPair: KeyPair?) {
-        println("Public Key: " + keyPair?.public?.encoded?.toString(Charsets.UTF_8))
+        println("Public Key: " + keyPair?.public?.encoded.let { it.contentToString() })
         println("Private Key: " + keyPair?.private?.encoded?.toString(Charsets.UTF_8))
     }
 
@@ -27,7 +28,14 @@ class KeyPairEncoder {
         val publicKey = publicKeyEncoder.loadKey(keyFactory, path)
         val privateKey = privateKeyEncoder.loadKey(keyFactory, path)
         return if (publicKey != null && privateKey != null) {
-            KeyPair(publicKey, privateKey)
+            KeyPair(publicKey, privateKey).also { keyPair ->
+                RandomArt().fingerprintRandomart(
+                    keyPair.public.encoded.map { it.toInt() }.toIntArray(),
+                    """ .o+=*BOX@%&#/^SE""",
+                    "[${keyPair.public.algorithm} ${keyPair.public.encoded.size}]",
+                    """"""
+                ).let { println(it) }
+            }
         } else {
             null
         }
