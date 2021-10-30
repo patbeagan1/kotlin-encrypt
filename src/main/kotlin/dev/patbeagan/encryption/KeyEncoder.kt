@@ -8,8 +8,11 @@ import java.security.Key
 import java.security.KeyFactory
 
 interface KeyEncoder<T : Key> {
+    val fileName: String
     fun loadKey(keyFactory: KeyFactory, path: String): T?
     fun storeKey(path: String, key: T)
+
+    fun getFileName(path: String): String = "$path/$fileName"
 
     fun writeKeyFile(path: String, bytes: ByteArray) {
         FileOutputStream(path).use { it.write(bytes) }

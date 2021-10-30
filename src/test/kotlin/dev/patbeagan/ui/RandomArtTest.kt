@@ -7,7 +7,7 @@ internal class RandomArtTest {
     @Test
     fun `random art prints correctly - key 1`() {
 
-        val fingerprintRandomart = RandomArt().fingerprintRandomart(
+        val fingerprintRandomart = RandomArt().fingerprintRandomArt(
             KEY1.map { it.code }
                 .also {
                     println()
@@ -37,7 +37,7 @@ internal class RandomArtTest {
     @Test
     fun `random art prints correctly - key 2`() {
 
-        val fingerprintRandomart = RandomArt().fingerprintRandomart(
+        val fingerprintRandomart = RandomArt().fingerprintRandomArt(
             KEY2.map { it.code }
                 .also {
                     println()

@@ -1,9 +1,10 @@
 package dev.patbeagan.ui
 
-class RandomArt(private val randomArtPrinter: IRandomArtPrinter = RandomArtPrinter()) {
-    fun fingerprintRandomart(
+internal class RandomArt(private val randomArtPrinter: IRandomArtPrinter = RandomArtPrinter()) {
+
+    fun fingerprintRandomArt(
         digestRaw: IntArray,
-        augmentationString: String,
+        augmentationString: String = """ .o+=*BOX@%&#/^SE""",
         title: String,
         hash: String
     ): String = randomArtPrinter.format(
@@ -13,6 +14,11 @@ class RandomArt(private val randomArtPrinter: IRandomArtPrinter = RandomArtPrint
         hash
     )
 
+    /**
+     * Adapted from C code in
+     * https://github.com/openssh/openssh-portable/blob/ef5916b8acd9b1d2f39fad4951dae03b00dbe390/sshkey.c#L1157
+     * licensed under https://choosealicense.com/licenses/bsd-2-clause/
+     */
     private fun fillField(
         augmentationString: String,
         digestRaw: IntArray,

@@ -2,6 +2,9 @@ package dev.patbeagan.encryption
 
 import java.security.KeyPair
 import java.security.KeyPairGenerator
+import java.security.Provider
+import java.security.Provider.Service
+import java.security.Security
 import javax.crypto.Cipher
 
 class Encryptor(
@@ -28,5 +31,19 @@ class Encryptor(
     fun decrypt(corpus: ByteArray): ByteArray = cipher.apply {
         init(Cipher.DECRYPT_MODE, pair.private)
     }.doFinal(corpus)
-}
 
+    fun getSupportedEncryptionServices() =
+        Security.getProviders().joinToString("\n") { provider ->
+            val algorithm = provider.services
+                .sortedBy { it.algorithm }
+                .sortedBy { it.type }
+                .joinToString("\n\t") { "${it.type} ${it.algorithm}" }
+            "${provider.name}\n\t$algorithm"
+        }
+
+    fun getSupportedCiphers() = Security.getProviders()
+        .flatMap { provider: Provider -> provider.services }
+        .filter { service: Service -> "Cipher" == service.type }
+        .sortedBy { it.algorithm }
+        .joinToString("\n") { it.algorithm }
+}
