@@ -3,18 +3,18 @@ package dev.patbeagan.ui
 import dev.patbeagan.ext.height
 import dev.patbeagan.ext.width
 
-class RandomArtPrinter : IRandomArtPrinter {
+internal class RandomArtPrinter : IRandomArtPrinter {
     override fun format(
         field: Array<IntArray>,
-        title: String,
         augmentationString: String,
-        hash: String
+        header: String,
+        footer: String
     ): String {
         val pp = StringBuilder()
-        pp.appendTextRow(field, title)
+        pp.appendTextRow(field, header)
         pp.append('\n')
         pp.appendContent(augmentationString, field)
-        pp.appendTextRow(field, hash)
+        pp.appendTextRow(field, footer)
         return pp.toString()
     }
 

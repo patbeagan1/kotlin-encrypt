@@ -4,7 +4,7 @@ import java.security.KeyFactory
 import java.security.PublicKey
 import java.security.spec.X509EncodedKeySpec
 
-class PublicKeyEncoder(
+internal class PublicKeyEncoder(
     override val fileName: String = "public.key"
 ) : KeyEncoder<PublicKey> {
 

@@ -11,10 +11,9 @@ class Encryptor(
     private val path: String = "/tmp/",
     private val keySize: Int = 2048,
     private val algorithm: String = "RSA",
-    private val cipher: Cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding")
-) {
-
+    private val cipher: Cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding"),
     private var keyPairEncoder: KeyPairEncoder = KeyPairEncoder()
+) {
 
     private val pair: KeyPair = keyPairEncoder.loadKeyPair(path, algorithm) ?: kotlin.run {
         KeyPairGenerator.getInstance(algorithm)
@@ -32,18 +31,21 @@ class Encryptor(
         init(Cipher.DECRYPT_MODE, pair.private)
     }.doFinal(corpus)
 
-    fun getSupportedEncryptionServices() =
-        Security.getProviders().joinToString("\n") { provider ->
-            val algorithm = provider.services
-                .sortedBy { it.algorithm }
-                .sortedBy { it.type }
-                .joinToString("\n\t") { "${it.type} ${it.algorithm}" }
-            "${provider.name}\n\t$algorithm"
-        }
+    companion object {
+        fun getSupportedEncryptionServices() =
+            Security.getProviders().joinToString("\n") { provider ->
+                val algorithm = provider.services
+                    .sortedBy { it.algorithm }
+                    .sortedBy { it.type }
+                    .joinToString("\n\t") { "${it.type} ${it.algorithm}" }
+                "${provider.name}\n\t$algorithm"
+            }
 
-    fun getSupportedCiphers() = Security.getProviders()
-        .flatMap { provider: Provider -> provider.services }
-        .filter { service: Service -> "Cipher" == service.type }
-        .sortedBy { it.algorithm }
-        .joinToString("\n") { it.algorithm }
+        fun getSupportedCiphers() = Security.getProviders()
+            .flatMap { provider: Provider -> provider.services }
+            .filter { service: Service -> "Cipher" == service.type }
+            .sortedBy { it.algorithm }
+            .joinToString("\n") { it.algorithm }
+    }
 }
+

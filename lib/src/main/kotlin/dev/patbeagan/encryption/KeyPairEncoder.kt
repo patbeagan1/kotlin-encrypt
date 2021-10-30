@@ -1,14 +1,14 @@
 package dev.patbeagan.encryption
 
 import java.io.IOException
-import java.security.KeyFactory
-import java.security.KeyPair
-import java.security.NoSuchAlgorithmException
+import java.security.*
 import java.security.spec.InvalidKeySpecException
 
-class KeyPairEncoder {
-    private val publicKeyEncoder = PublicKeyEncoder()
-    private val privateKeyEncoder = PrivateKeyEncoder()
+
+class KeyPairEncoder(
+    private val privateKeyEncoder: KeyEncoder<PrivateKey> = PrivateKeyEncoder(),
+    private val publicKeyEncoder: KeyEncoder<PublicKey> = PublicKeyEncoder()
+) {
 
     @Throws(IOException::class)
     fun saveKeyPair(path: String, keyPair: KeyPair) {

@@ -1,13 +1,14 @@
 package dev.patbeagan.encryption
 
 import dev.patbeagan.ext.dumpKeyPair
+import dev.patbeagan.ui.PrintConfig
 import dev.patbeagan.ui.RandomArt
 import org.junit.Assert
 import org.junit.Test
-import java.nio.file.FileAlreadyExistsException
 import java.security.KeyPairGenerator
-import kotlin.io.path.Path
-import kotlin.io.path.createDirectory
+
+//import kotlin.io.path.Path
+//import kotlin.io.path.createDirectory
 
 internal class KeyPairEncoderTest {
     @Test
@@ -16,9 +17,11 @@ internal class KeyPairEncoderTest {
         val keyPair = keyPairEncoder.loadKeyPair("/tmp", "RSA")!!
         val actual = RandomArt().fingerprintRandomArt(
             keyPair.public.encoded.map { it.toInt() }.toIntArray(),
-            """ .o+=*BOX@%&#/^SE""",
-            "[${keyPair.public.algorithm} ${keyPair.public.encoded.size}]",
-            """"""
+            PrintConfig(
+                """ .o+=*BOX@%&#/^SE""",
+                "[${keyPair.public.algorithm} ${keyPair.public.encoded.size}]",
+                """"""
+            )
         )
 
         val expected = """
@@ -42,7 +45,7 @@ internal class KeyPairEncoderTest {
     fun `test keypair encoder can save to file and reload the key`() {
         val keyPairEncoder = KeyPairEncoder()
         val path = "/tmp/kotlin-encrypt-keypairencoder"
-        ensureDirectoryExists(path)
+//        ensureDirectoryExists(path)
 
         val keyGen = KeyPairGenerator.getInstance("DSA").apply {
             initialize(1024)
@@ -62,11 +65,11 @@ internal class KeyPairEncoderTest {
         }
     }
 
-    private fun ensureDirectoryExists(path: String) {
-        try {
-            Path(path).createDirectory()
-        } catch (e: FileAlreadyExistsException) {
-            println("The directory already exists")
-        }
-    }
+//    private fun ensureDirectoryExists(path: String) {
+//        try {
+//            Path(path).createDirectory()
+//        } catch (e: FileAlreadyExistsException) {
+//            println("The directory already exists")
+//        }
+//    }
 }

@@ -12,9 +12,11 @@ internal class RandomArtTest {
                 .also {
                     println()
                 }.toIntArray(),
-            """ .o+=*BOX@%&#/^SE""",
-            """test""",
-            """"""
+            PrintConfig(
+                """ .o+=*BOX@%&#/^SE""",
+                """test""",
+                """"""
+            )
         )
 
         val expected = """
@@ -42,9 +44,11 @@ internal class RandomArtTest {
                 .also {
                     println()
                 }.toIntArray(),
-            """ .o+=*BOX@%&#/^SE""",
-            """test""",
-            """"""
+            PrintConfig(
+                """ .o+=*BOX@%&#/^SE""",
+                """test""",
+                """"""
+            )
         )
 
         val expected = """

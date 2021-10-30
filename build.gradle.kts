@@ -11,25 +11,18 @@ repositories {
     mavenCentral()
 }
 
-dependencies {
-    implementation("org.junit.jupiter:junit-jupiter:5.8.1")
-    testImplementation("org.jetbrains.kotlin:kotlin-test:1.5.31")
-}
-
 tasks.test {
     useJUnit()
 }
 
-tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "11"
+tasks.getByName<Test>("test") {
+    useJUnitPlatform()
+
+    testLogging {     // This is for logging and can be removed.
+        events("passed", "skipped", "failed")
+    }
 }
 
-tasks.jar {
-    manifest {
-        attributes["Main-Class"] = "dev.patbeagan.main.MainKt"
-    }
-    configurations["compileClasspath"].forEach { file: File ->
-        from(zipTree(file.absoluteFile))
-    }
-    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+tasks.withType<KotlinCompile> {
+    kotlinOptions.jvmTarget = "11"
 }

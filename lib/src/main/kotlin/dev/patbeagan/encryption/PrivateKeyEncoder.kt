@@ -4,7 +4,7 @@ import java.security.KeyFactory
 import java.security.PrivateKey
 import java.security.spec.PKCS8EncodedKeySpec
 
-class PrivateKeyEncoder(
+internal class PrivateKeyEncoder(
     override val fileName: String = "private.key"
 ) : KeyEncoder<PrivateKey> {
 

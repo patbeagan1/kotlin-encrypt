@@ -6,9 +6,9 @@ import org.junit.Test
 internal class EncryptorTest {
     @Test
     fun `get encryption details`() {
-        Encryptor().also {
-            println(it.getSupportedCiphers())
-            println(it.getSupportedEncryptionServices())
+        Encryptor.apply {
+            println(getSupportedCiphers())
+            println(getSupportedEncryptionServices())
         }
     }
 

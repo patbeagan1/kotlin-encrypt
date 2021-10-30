@@ -1,18 +1,24 @@
 package dev.patbeagan.ui
 
-internal class RandomArt(private val randomArtPrinter: IRandomArtPrinter = RandomArtPrinter()) {
+data class PrintConfig(
+    val augmentationString: String = """ .o+=*BOX@%&#/^SE""",
+    val header: String,
+    val footer: String
+)
+
+class RandomArt(private val randomArtPrinter: IRandomArtPrinter = RandomArtPrinter()) {
 
     fun fingerprintRandomArt(
         digestRaw: IntArray,
-        augmentationString: String = """ .o+=*BOX@%&#/^SE""",
-        title: String,
-        hash: String
-    ): String = randomArtPrinter.format(
-        fillField(augmentationString, digestRaw, FieldConfig()),
-        title,
-        augmentationString,
-        hash
-    )
+        printConfig: PrintConfig
+    ): String = printConfig.run {
+        randomArtPrinter.format(
+            fillField(augmentationString, digestRaw, randomArtPrinter.getFieldConfig()),
+            augmentationString,
+            header,
+            footer
+        )
+    }
 
     /**
      * Adapted from C code in
