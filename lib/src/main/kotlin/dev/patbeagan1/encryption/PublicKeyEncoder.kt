@@ -1,4 +1,4 @@
-package dev.patbeagan.encryption
+package dev.patbeagan1.encryption
 
 import java.security.KeyFactory
 import java.security.PublicKey

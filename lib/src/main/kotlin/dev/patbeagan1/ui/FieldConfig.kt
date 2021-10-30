@@ -1,4 +1,4 @@
-package dev.patbeagan.ui
+package dev.patbeagan1.ui
 
 data class FieldConfig(
     val fieldBaseNumber: Int = 8

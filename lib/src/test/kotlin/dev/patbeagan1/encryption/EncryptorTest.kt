@@ -1,4 +1,4 @@
-package dev.patbeagan.encryption
+package dev.patbeagan1.encryption
 
 import org.junit.Assert
 import org.junit.Test

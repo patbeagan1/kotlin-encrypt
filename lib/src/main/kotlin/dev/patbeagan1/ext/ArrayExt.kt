@@ -1,4 +1,4 @@
-package dev.patbeagan.ext
+package dev.patbeagan1.ext
 
 val Array<IntArray>.height: Int
     get() = this.size

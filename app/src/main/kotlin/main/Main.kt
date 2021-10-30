@@ -1,8 +1,8 @@
 package main
 
-import dev.patbeagan.encryption.Encryptor
-import dev.patbeagan.ui.PrintConfig
-import dev.patbeagan.ui.RandomArt
+import dev.patbeagan1.encryption.Encryptor
+import dev.patbeagan1.ui.PrintConfig
+import dev.patbeagan1.ui.RandomArt
 
 fun main() {
     val message = "Hello world"

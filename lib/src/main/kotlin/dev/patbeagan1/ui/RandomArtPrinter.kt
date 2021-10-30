@@ -1,7 +1,7 @@
-package dev.patbeagan.ui
+package dev.patbeagan1.ui
 
-import dev.patbeagan.ext.height
-import dev.patbeagan.ext.width
+import dev.patbeagan1.ext.height
+import dev.patbeagan1.ext.width
 
 internal class RandomArtPrinter : IRandomArtPrinter {
     override fun format(

@@ -1,7 +1,7 @@
-package dev.patbeagan.ext
+package dev.patbeagan1.ext
 
-import dev.patbeagan.ui.PrintConfig
-import dev.patbeagan.ui.RandomArt
+import dev.patbeagan1.ui.PrintConfig
+import dev.patbeagan1.ui.RandomArt
 import java.security.Key
 import java.security.KeyPair
 

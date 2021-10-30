@@ -1,8 +1,8 @@
-package dev.patbeagan.encryption
+package dev.patbeagan1.encryption
 
-import dev.patbeagan.ext.dumpKeyPair
-import dev.patbeagan.ui.PrintConfig
-import dev.patbeagan.ui.RandomArt
+import dev.patbeagan1.ext.dumpKeyPair
+import dev.patbeagan1.ui.PrintConfig
+import dev.patbeagan1.ui.RandomArt
 import org.junit.Assert
 import org.junit.Test
 import java.security.KeyPairGenerator

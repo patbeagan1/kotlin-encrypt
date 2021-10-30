@@ -1,4 +1,4 @@
-package dev.patbeagan.ui
+package dev.patbeagan1.ui
 
 import org.junit.Assert
 import org.junit.Test
