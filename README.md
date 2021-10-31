@@ -1,6 +1,8 @@
 # kotlin-encrypt
 An easy keystore wrapper written in kotlin - use for encrypting files
 
+Still alpha level - don't use in production!
+
 Simple example:
 ```kotlin
     val encryptor = Encryptor()
