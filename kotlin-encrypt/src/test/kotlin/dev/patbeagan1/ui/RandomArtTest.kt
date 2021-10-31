@@ -1,6 +1,6 @@
 package dev.patbeagan1.ui
 
-import org.junit.Assert
+import org.junit.Assert.assertEquals
 import org.junit.Test
 
 internal class RandomArtTest {
@@ -33,7 +33,7 @@ internal class RandomArtTest {
             +-----------------+
         """.trimIndent()
 
-        Assert.assertEquals(expected, fingerprintRandomart)
+        assertEquals(expected, fingerprintRandomart)
     }
 
     @Test
@@ -65,7 +65,7 @@ internal class RandomArtTest {
             +-----------------+
         """.trimIndent()
 
-        Assert.assertEquals(expected, fingerprintRandomart)
+        assertEquals(expected, fingerprintRandomart)
     }
 
     companion object {
