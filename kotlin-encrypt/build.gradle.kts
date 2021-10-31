@@ -2,10 +2,8 @@ plugins {
     kotlin("jvm")
     java
     `maven-publish`
+    `java-library`
 }
-
-group = "dev.patbeagan1"
-version = "0.1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
@@ -23,11 +21,9 @@ tasks.getByName<Test>("test") {
     useJUnitPlatform()
 }
 
-tasks.jar {
-    configurations["compileClasspath"].forEach { file: File ->
-        from(zipTree(file.absoluteFile))
-    }
-    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+java {
+    withJavadocJar()
+    withSourcesJar()
 }
 
 publishing {
@@ -40,10 +36,14 @@ publishing {
                 password = project.findProperty("gpr.key") as String? ?: System.getenv("TOKEN")
             }
         }
+        mavenLocal()
     }
     publications {
         register<MavenPublication>("gpr") {
             from(components["java"])
+            groupId = "dev.patbeagan1"
+            artifactId = rootProject.name
+            version = "0.1.2-SNAPSHOT"
         }
     }
 }
