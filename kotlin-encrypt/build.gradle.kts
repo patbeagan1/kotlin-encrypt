@@ -43,7 +43,7 @@ publishing {
             from(components["java"])
             groupId = "dev.patbeagan1"
             artifactId = rootProject.name
-            version = "0.1.2-SNAPSHOT"
+            version = "0.1.3-SNAPSHOT"
         }
     }
 }
